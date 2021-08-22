@@ -14,14 +14,29 @@ const gameBoard = (() => {
   //addEventListener to each square that will
   //fill in currentPlayer mark from game(); in both board arr and squareEl. can just select same index in board & boardSquares or use data-index attribute.
   //mark will be css selector that applies according to current player
-  boardSquares.forEach((square) => {
-    square.addEventListener("click", () => {
-      //add currentPlayer mark to classList
-      square.classList.add(game.currentPlayer.mark);
-      square.innerText = game.currentPlayer.mark;
-      //toggle currentPlayer
-      game.nextPlayer();
-    });
+  boardSquares.forEach((square, index) => {
+    square.addEventListener(
+      "click",
+      () => {
+        //add currentPlayer mark to classList
+        square.classList.add(game.currentPlayer.mark);
+        square.innerText = game.currentPlayer.mark;
+
+        //fill in board with appropriate mark
+        board[index] = game.currentPlayer.mark;
+        console.log(board);
+
+        //check winner
+        game.checkWinner();
+        //toggle currentPlayer
+        game.nextPlayer();
+
+        //switch cursor to no
+        square.style.cursor = "not-allowed";
+      },
+      //only once
+      { once: true }
+    );
   });
 
   return { board, boardSquares };
@@ -61,6 +76,20 @@ const game = (() => {
       : (this.currentPlayer = player1);
   }
 
+  function checkWinner() {
+    winCombos.forEach((combo) => {
+      if (
+        gameBoard.board[combo[0]] === this.currentPlayer.mark &&
+        gameBoard.board[combo[1]] === this.currentPlayer.mark &&
+        gameBoard.board[combo[2]] === this.currentPlayer.mark
+      ) {
+        console.log(`${this.currentPlayer.name} wins`);
+      } else {
+        console.log("no winner");
+      }
+    });
+  }
+
   //
-  return { currentPlayer, turns, nextPlayer };
+  return { currentPlayer, turns, nextPlayer, checkWinner };
 })();
