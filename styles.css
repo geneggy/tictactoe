@@ -1,12 +1,42 @@
+body {
+  font-family: arial;
+  margin: 0;
+}
+
+.game-container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 .game-grid {
-  height: 500px;
-  width: 500px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  border: 1px solid black;
+  grid-template-columns: repeat(3, auto);
+  justify-content: center;
+  align-content: center;
 }
 
 .board-square {
+  font-size: 10rem;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15vh;
+  height: 15vh;
   cursor: crosshair;
+  background-color: black;
+  border: 1px solid white;
+}
+
+.game-message {
+  font-size: 5rem;
+  background-color: white;
+  position: absolute;
+}
+
+.game-reset-button {
+  font-size: 3rem;
 }
