@@ -6,17 +6,10 @@ const playerFactory = (name, mark, turn) => {
 //game status
 const game = (() => {
   const board = ["", "", "", "", "", "", "", "", ""];
-  //initiate players
   const player1 = playerFactory("player1", "O", true);
   const player2 = playerFactory("player2", "X", false);
-
-  //game counters
   let currentPlayer = player1;
   let turns = 9;
-
-  //querySelectors
-
-  //Winning combinations
   const winCombos = [
     [0, 1, 2],
     [3, 4, 5],
@@ -27,7 +20,7 @@ const game = (() => {
     [0, 4, 8],
     [2, 4, 6],
   ];
-  //switch to next player after turn
+
   function nextPlayer() {
     this.currentPlayer === player1
       ? (this.currentPlayer = player2)
@@ -50,7 +43,6 @@ const game = (() => {
     this.currentPlayer = player1;
   }
 
-  //
   return {
     board,
     currentPlayer,
