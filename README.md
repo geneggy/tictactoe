@@ -1,2 +1,2 @@
 # tiktactoe
-Odin Project: Tik Tac Toe
+Odin Project: Tic Tac Toe
